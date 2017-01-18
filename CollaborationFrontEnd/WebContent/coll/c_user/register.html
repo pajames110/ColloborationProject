@@ -1,0 +1,85 @@
+<div>
+<head>
+ <style>
+  input[type=text], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+     display: inline-block; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=password], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+     display: inline-block; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=number], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+     display: inline-block; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button[type=submit] {
+     background-color: #00cc00;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type=submit]: {
+    background-color: #00cc00;
+}
+input[type=file] {
+     /* background-color: #f2f2f2; */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+form {
+
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+     background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+} 
+ 
+</style>
+</head>
+<body ng-controller="ReigsterController">
+	<form name="myForm" novalidate>
+	<h2>{{message}}</h2>
+		 Username:<input type="text" name="name" ng-model="name" required>
+		<span ng-show="myForm.name.$dirty &&myForm.name.$error.required">Username is required.</span><br>
+		 Password:<input type="password" name="password" ng-model="password" required ng-minlength="5" ng-maxlength="10"> 
+		 <span ng-show="myForm.password.$dirty &&myForm.password.$error.required">Password is required.</span>
+		 <span ng-show="myForm.password.$dirty &&myForm.password.$error.minlength">minimum 5 characters required</span>
+		 <span ng-show="myForm.password.$dirty &&myForm.password.$error.maxlength">too long.</span><br>
+		 Mobile:&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" name="mobile" ng-model="mobile" required>
+		 <span ng-show="myForm.mobile.$dirty &&myForm.mobile.$error.required">Mobile number is required.</span><br>
+		<input type = "file" file-model = "myFile"/><br>
+      <button type="submit" ng-disabled="myForm.$invalid" ng-click="register()">Register</button>
+	</form>
+</body>
+</div>
