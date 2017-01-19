@@ -3,54 +3,44 @@ package com.james.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 @Entity
 @Component
 public class Blog {
+	@Id@GeneratedValue
+	private int blog_id;
 	
-	@Id
-	private String BlogId;
 	private String title;
-	private String usersID;
-	private Date dateOfCreation;
-	private String content;
+	private String description;
 	private String category;
-	private int approved;
-	private String blogCreationDate;
+	private String postedby;
+	private int likes;
+	private boolean status;
 	
-	public String getBlogId() {
-		return BlogId;
+	public int getLikes() {
+		return likes;
 	}
-	public void setBlogId(String blogId) {
-		BlogId = blogId;
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
-	public String getTitle() {
-		return title;
+	public String getPostedby() {
+		return postedby;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setPostedby(String postedby) {
+		this.postedby = postedby;
 	}
-	public String getUsersID() {
-		return usersID;
+	
+	
+	
+	public boolean isStatus() {
+		return status;
 	}
-	public void setUsersID(String usersID) {
-		this.usersID = usersID;
-	}
-	public Date getDateOfCreation() {
-		return dateOfCreation;
-	}
-	public void setDateOfCreation(Date dateOfCreation) {
-		this.dateOfCreation = dateOfCreation;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	public String getCategory() {
 		return category;
@@ -58,16 +48,23 @@ public class Blog {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public int getApproved() {
-		return approved;
+	public int getBlog_id() {
+		return blog_id;
 	}
-	public void setApproved(int approved) {
-		this.approved = approved;
+	public void setBlog_id(int blog_id) {
+		this.blog_id = blog_id;
 	}
-	public String getBlogCreationDate() {
-		return blogCreationDate;
+	
+	public String getTitle() {
+		return title;
 	}
-	public void setBlogCreationDate(String blogCreationDate) {
-		this.blogCreationDate = blogCreationDate;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

@@ -28,7 +28,7 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	public void registerUser(Users user) {
-		user.setRole("ROLE_USER");
+		user.setRole("ROLE_ADMIN");
 		sessionFactory.getCurrentSession().save(user);
 	}
 
@@ -41,6 +41,7 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	public int validateUser(String name, String password) {
+		System.out.println(" insicde validte dao");
 		int res = 0;
 		Session session = sessionFactory.getCurrentSession();
 		Query result = session.createQuery("from Users u where u.name='" + name + "'");
@@ -57,10 +58,10 @@ public class UsersDaoImpl implements UsersDao {
 				String dbrole = users.get(i).getRole();
 				if (dbname.equals(name) && dbpassword.equals(password) && dbrole.equals("ROLE_USER")) {
 
-					String query1 = "UPDATE friend SET IsOnline = '" + "online" + "' WHERE friendname = '" + name + "'";
+				//	String query1 = "UPDATE friend SET IsOnline = '" + "online" + "' WHERE friendname = '" + name + "'";
 
-					SQLQuery sqlquery = session.createSQLQuery(query1);
-					sqlquery.executeUpdate();
+					//SQLQuery sqlquery = session.createSQLQuery(query1);
+					//sqlquery.executeUpdate();
 					res = 1;
 					System.out.println("the result is:" + res);
 				} else if (dbname.equals(name) && dbpassword.equals(password) && dbrole.equals("ROLE_ADMIN")) {
@@ -92,10 +93,10 @@ public class UsersDaoImpl implements UsersDao {
 	public void logout(String name) {
 		Session session = sessionFactory.getCurrentSession();
 
-		String query1 = "UPDATE friend SET IsOnline = '" + "offline" + "' WHERE friendname = '" + name + "'";
+		//String query1 = "UPDATE friend SET IsOnline = '" + "offline" + "' WHERE friendname = '" + name + "'";
 
-		SQLQuery sqlquery = session.createSQLQuery(query1);
-		sqlquery.executeUpdate();
+		//SQLQuery sqlquery = session.createSQLQuery(query1);
+		//sqlquery.executeUpdate();
 	}
 
 }

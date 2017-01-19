@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,57 +27,43 @@ public class BlogDaoImpl implements BlogDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Transactional
-	public void saveOrUpdateBlog(Blog blog) {
-		try {
-			System.out.println("inside save or update");
-			Session session = sessionFactory.openSession();
-			session.saveOrUpdate(blog);
-			session.flush();
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-
-			e.printStackTrace();
-		}
-
+	public void addBlog(Blog blog) {
+		sessionFactory.getCurrentSession().save(blog);		
 	}
 
-	@Transactional
-	public Blog getBlogById(String blogId) {
-
-		String hql = "from Blog where BlogId='" + blogId + "'";
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery(hql);
-
-		return null;
-	}
-	@Transactional
-	public List<Blog> getAllBlogs() {
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from blog");
-		List<Blog> blog = query.list();
-
-		return blog;
+	public List<Blog> viewBlogs() {
+		List<Blog> list = sessionFactory.getCurrentSession().createCriteria(Blog.class).list();
+		return list;
 	}
 
-	@Transactional
-	public boolean delete(String blogId) {
-		try {
-			Blog blogToDelete = new Blog();
-			blogToDelete.setBlogId(blogId);
-			;
-			Session session = sessionFactory.openSession();
-			session.delete(blogToDelete);
-			session.flush();
-
-			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-
-			e.printStackTrace();
-			return false;
-		}
+	public List<Blog> viewAllBlogs() {
+		Session session=sessionFactory.getCurrentSession();
+		Criteria ct=session.createCriteria(Blog.class);
+		
+		ct.add(Restrictions.eq("status",true));
+		List list=ct.list();	
+		return list;	
 	}
+
+	public void deleteBlog(Blog blog) {
+		sessionFactory.getCurrentSession().delete(blog);
+		
+	}
+
+	public void updateBlog(Blog blog) {
+		sessionFactory.getCurrentSession().update(blog);
+		
+	}
+
+	public List<Blog> viewMyBlogs(String postedby) {
+		System.out.println("in view my blogs");
+		Session session=sessionFactory.getCurrentSession();
+		Criteria ct=session.createCriteria(Blog.class);
+		ct.add(Restrictions.eq("postedby",postedby));
+		ct.add(Restrictions.eq("status",true));
+		List list=ct.list();	
+		return list;
+	}
+
 
 }
