@@ -1,0 +1,70 @@
+<head>
+<style>
+button[type=button] {
+     background-color: #4d79ff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+button[type=button] {
+    background-color: #4d79ff;}
+body {
+border-radius: 5px;
+     background-color: #f2f2f2; 
+    padding: 20px;
+     background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+} 
+
+</style>
+</head>
+<body ng-controller="UserHomeController">
+<div class="jumbotron text-right">
+	
+	<button type="button" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#friends" ng-click="findfriends()">
+		Find Friends</button> 
+	
+		<img class="img-responsive" src="images/{{uname}}.jpg" alt="Chania" style="width: 20%;height: 30%;border-radius: 50%;">
+	<h5 style="text-align: left;">Welcome, {{uname}}</h5>
+	
+ <!-- 	Modal --> 
+	<div class="modal fade" id="friends" role="dialog">
+		<div class="modal-dialog">
+
+			Modal content
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Find Friends</h4>
+				</div>
+				<div class="modal-body">
+				<table class="table table-striped">
+		
+		<tbody>
+			<tr ng-repeat=" user in friends">
+				<td>{{user.name}}</td>
+				<td><img src="images/{{user.name}}.jpg" alt="me" style="width:150px;height:150px;border-radius: 50%;">
+			</td>
+			<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#" ng-disabled="isDisabled"
+						ng-click="addfriend(user)">Add Friend</button>
+			</tr>
+		</tbody>
+	</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				
+			</div>
+		</div>
+	</div>
+	 
+</div>
+
+</body>

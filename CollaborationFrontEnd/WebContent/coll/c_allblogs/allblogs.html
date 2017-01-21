@@ -1,0 +1,112 @@
+<head><style>
+body {
+background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+    border-radius: 5px;
+   
+    padding: 20px;
+     
+} 
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+th {
+    background-color:  #008fb3;
+    color: white;
+}
+h1
+{
+font-size: 40px;
+color: #0080ff;
+}
+</style>
+
+</head>
+
+
+<body><div>
+	<hr>
+	
+	<h1>All Blogs</h1>
+	<span class="clearfix"></span>
+	</hr>
+	
+	<table class="table table-inverse">
+		<thead>
+			<tr>
+				<th>blog id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>category</th>
+				<th>postedby</th>
+				<th>Like</th>
+				<th>Comment</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		<tr>Likes={{likes}}</tr>
+			<tr ng-repeat="allblogs in blogs">
+				<td>{{allblogs.blog_id}}</td>
+				<td>{{allblogs.title}}</td>
+				<td>{{allblogs.description}}</td>
+				<td>{{allblogs.category}}</td>
+				<td>{{allblogs.postedby}}</td>
+				<td>{{allblogs.likes}}</td>
+			
+				<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#comments"
+						ng-click="viewcomments(allblogs)">View Comments</button></td>
+				<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#likeblog"
+						ng-click="likeBlog(allblogs)">Like</button></td>
+				 
+			<td><input type="text"  ng-model="allblogs.Comment"></td>
+			<td><button type="button" class="btn btn-primary btn-sm " ng-click="comment(allblogs)">comment</button></td></tr>
+			
+			
+		</tbody>
+	</table>
+	<!-- Modal -->
+	<div class="modal fade" id="comments" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">View Comments</h4>
+				</div>
+				<div class="modal-body">
+				
+	<span class="clearfix"></span>
+	</hr>
+	
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th> Name</th>
+				<th>Comment</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		
+			<tr ng-repeat="comment in comments">
+				<td>{{comment.name}}</td>
+				<td>{{comment.comment}}</td>
+				
+				
+			
+		</tbody>
+		
+	</table>
+				</div>
+		<div class="modal-footer">
+				<button type="button" class="btn-btn-primary btn-sm" data-dismiss="modal"
+					ng-click="">Close</button>
+				</div>	</div></div></div></div></body>

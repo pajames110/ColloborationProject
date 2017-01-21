@@ -1,52 +1,82 @@
-
-var app = angular.module('myApp', ['ngRoute','ngCookies']);
+var app = angular.module('myApp', [ 'ngRoute', 'ngCookies' ]);
 
 console.log("hi n app ");
 
 app.config(function($routeProvider) {
-  
+
 	$routeProvider
-	
-  .when('/', {
-    templateUrl : 'coll/c_home/home.html'
-   
-  })
 
-  .when('/blog', {
-    templateUrl : 'coll/c_blog/blog.html'
-   
-  })
+	.when('/', {
+		templateUrl : 'index.html'
+		
 
-  .when('/friend', {
-    templateUrl : 'coll/c_friend/friend.html'
-   
-  })
-  
-   .when('/job', {
-    templateUrl : 'coll/c_job/job.html'
-   
-  })
-  
-  .when('/login', {
-	  
-    templateUrl : 'coll/c_user_login/login.html',
-        controller : 'LoginController'	
+	}).when('/home', {
+		templateUrl : 'coll/c_home/home.html',
+		controller : 'UserHomeController'
 
-   
-  })
-  
-  .when('/register', {
-	  
-    templateUrl : 'coll/c_user/register.html',
-    controller : 'RegisterController'	
-   
-  })
-  
-  .when('/about', {
-    templateUrl : 'coll/c_about/about.html'
-   
-  })
+	}).when("/allblogs", {
+		templateUrl : "coll/c_allblogs/allblogs.html",
+		controller : "AllBlogsController"
 
-  .otherwise({redirectTo: '/'});
+	}).when("/userjobs", {
+		templateUrl : "coll/c_user_jobs/userjobs.html",
+		controller : "UserJobsController"
+
+	}).when("/job", {
+		templateUrl : "coll/c_admin_job/jobs.html",
+		controller : "AdminJobsController"
+	})
+
+	.when("/userforum", {
+		templateUrl : "coll/c_user_forum/userforum.html",
+		controller : "UserForumController"
+
+	}).when("/adminforum", {
+		templateUrl : "coll/c_admin_forum/adminforum.html",
+		controller : "AdminForumController"
+
+	})
+
+	.when('/blog', {
+		templateUrl : 'coll/c_blog/blog.html',
+		controller : 'BlogController'
+
+	}).when('/adminblog', {
+		templateUrl : 'coll/c_blog_admin/adminblog.html',
+		controller : 'AdminBlogController'
+
+	}).when("/friendslist",
+	{
+		templateUrl:"coll/c_friend/friendslist.html",
+	controller:'FriendsListController'
+	})
+
+	.when('/login', {
+
+		templateUrl : 'coll/c_user_login/login.html',
+		controller : 'LoginController'
+
+	})
+
+	.when('/register', {
+
+		templateUrl : 'coll/c_user/register.html',
+		controller : 'RegisterController'
+
+	})
+
+	.when('/about', {
+		templateUrl : 'coll/c_about/about.html'
+
+	})
+
+	.when('/logout', {
+		templateUrl : 'coll/c_user_login/logout.html',
+		controller : 'LogoutController'
+
+	})
+
+	.otherwise({
+		redirectTo : '/'
+	});
 });
-

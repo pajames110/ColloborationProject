@@ -1,0 +1,83 @@
+<style>
+body {
+background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+    border-radius: 5px;
+   
+    padding: 20px;
+     
+} 
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+th {
+    background-color:  #008fb3;
+    color: white;
+}
+h1
+{
+font-size: 40px;
+color: #0080ff;
+}
+
+</style><body ng-controller="UserJobsController"><div>
+	<hr>
+	
+	<h1>All Jobs</h1>
+	<span class="clearfix"></span>
+	</hr>
+	<hr>
+	</hr>
+	<table class="table table-inverse">
+		<thead>
+			<tr>
+				<th>JobId</th>
+				<th>JobName</th>
+				<th>JobRole</th>
+				<th>JobRequirements</th>
+				<th>JobDescription</th>
+				<th>Apply</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="job in jobs">
+				<td>{{job.job_id}}</td>
+				<td>{{job.job_name}}</td>
+				<td>{{job.job_role}}</td>
+				<td>{{job.job_requirements}}</td>
+				<td>{{job.job_description}}</td>
+				<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#applyjob"
+						ng-click="applyJob">Apply</button></td>
+				
+			</tr>
+		</tbody>
+	</table>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="applyjob" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Apply</h4>
+				</div>
+				<div class="modal-body">Do you want to apply
+					{{job.job_id}} job?</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-btn-default" data-dismiss="modal"
+					ng-click="applyJob(job)">Yes</button>
+				<button type="button" class="btn-btn-default" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+
+</div></body>

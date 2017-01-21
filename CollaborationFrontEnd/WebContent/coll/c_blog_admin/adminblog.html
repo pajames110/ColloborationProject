@@ -1,0 +1,106 @@
+<style>
+body {
+background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+    border-radius: 5px;
+   
+    padding: 20px;
+     
+} 
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+th {
+    background-color:  #008fb3;
+    color: white;
+}
+h1
+{
+font-size: 40px;
+color: #0080ff;
+}
+
+</style>
+<body ng-controller="AdminBlogController">
+<div>
+	<hr>
+	
+	<h1>All Blogs</h1>
+	<span class="clearfix"></span>
+	</hr>
+	<hr>
+	</hr>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Blog id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>category</th>
+				<th>postedby<th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="adminblog in blogs">
+				<td>{{adminblog.blog_id}}</td>
+				<td>{{adminblog.title}}</td>
+				<td>{{adminblog.description}}</td>
+				<td>{{adminblog.category}}</td>
+				<td>{{adminblog.postedby}}</td>
+				<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#approve"
+						ng-click="appdisapp(adminblog)">Approve</button></td>
+				<td><button type="button" class="btn btn-danger btn-sm "
+						data-toggle="modal" data-target="#disapprove"
+						ng-click="appdisapp(adminblog)">Disapprove</button></td>
+			</tr>
+		</tbody>
+	</table>
+	
+
+	<!-- Modal -->
+	<div class="modal fade" id="approve" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Approve</h4>
+				</div>
+				<div class="modal-body">Do you want to approve
+					{{blogstatus.adminblog_id}} blog?</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-btn-default" data-dismiss="modal"
+					ng-click="approveBlog(adminblog)">Yes</button>
+				<button type="button" class="btn-btn-default" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="disapprove" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Disapprove</h4>
+				</div>
+				<div class="modal-body">Do you want to disapprove
+					{{blogstatus.adminblog_id}} blog?</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-btn-default" data-dismiss="modal"
+					ng-click="disapproveBlog(adminblog)">Yes</button>
+				<button type="button" class="btn-btn-default" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+</div></body>

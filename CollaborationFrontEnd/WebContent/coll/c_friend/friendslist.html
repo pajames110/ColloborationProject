@@ -1,0 +1,26 @@
+<style>
+body {
+background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+    border-radius: 5px;
+   
+    padding: 20px;
+     
+}
+</style><body ng-controller="FriendsListController">
+<div class="modal-body">
+				<table class="table table-striped">
+		
+		<tbody>
+			<tr ng-repeat=" user in friendslist">
+				<td>{{user.friendname}}</td>
+				<td>{{user.isOnline}}</td>
+				<td><img src="images/{{user.friendname}}.jpg" alt="me" style="width:150px;height:150px;border-radius: 50%;">
+			</td>
+			<td><li><a href="#chat">
+						 Chat</a></li></td>
+		
+			</tr>
+		</tbody>
+	</table>
+				</div></body>

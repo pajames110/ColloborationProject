@@ -1,4 +1,158 @@
-<div>
-Welcome to Blog Management
-</div>
+<head><style>
+body {
+background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+    border-radius: 5px;
+   
+    padding: 20px;
+     
+} 
+input[type=text], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+     display: inline-block; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button[type=submit] {
+     background-color: #00cc00;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+th {
+    background-color:  #008fb3;
+    color: white;
+}
+h1
+{
+font-size: 40px;
+color: #0080ff;
+}
+</style>
+
+</head>
+
+
+
+<body ng-controller="BlogController"><div>
+	<hr>
+	<button type="button" data-toggle="modal" class="btn btn-primary btn-lg " data-target="#myModal">
+	Add New Blog</button>
+		
+	<h1>My Blogs</h1>
+	<span class="clearfix"></span>
+	</hr>
+	<hr>
+	</hr>
+	<table class="table table-inverse">
+		<thead>
+			<tr>
+				<th>blog id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>category</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="blog in blogs">
+				<td>{{blog.blog_id}}</td>
+				<td>{{blog.title}}</td>
+				<td>{{blog.description}}</td>
+				<td>{{blog.category}}</td>
+				<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#editblog"
+						ng-click="editBlog(blog)">Edit</button></td>
+				<td><button type="button" class="btn btn-danger btn-sm "
+						data-toggle="modal" data-target="#deleteblog"
+						ng-click="editBlog(blog)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add New Blog</h4>
+				</div>
+				<div class="modal-body">
+					<form name="myForm" novalidate><h2>{{message}}</h2>
+						Category:<input type="text" name="category" ng-model="category" required>
+						<span ng-show="myForm.category.$dirty &&myForm.category.$error.required">Category is required.</span><br>
+						Title:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="title" ng-model="title" required>
+						<span ng-show="myForm.title.$dirty &&myForm.title.$error.required">Title is required.</span><br>
+						Description:<input type="text" name="description" ng-model="description" required>
+						<span ng-show="myForm.description.$dirty &&myForm.description.$error.required">Description is required.</span><br>
+						<button type="submit" ng-disabled="myForm.$invalid" ng-click="addBlog()">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="editblog" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Edit</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+					     	Blog_id:<input type="text" name="blog_id" ng-model="blogedit.blog_id"> <br>
+							Category:<input type="text" name="category" ng-model="blogedit.category"> <br>
+							Title:<input type="text" name="title" ng-model="blogedit.title"><br>
+						   Description:<input type="text" name="description" ng-model="blogedit.description"><br>
+						<button type="submit" ng-click="saveEdit()">SaveEdit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="deleteblog" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Delete</h4>
+				</div>
+				<div class="modal-body">Do you want to delete
+					{{blogedit.blog_id}} blog permanently?</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-btn-default" data-dismiss="modal"
+					ng-click="deleteBlog(blogedit)">Yes</button>
+				<button type="button" class="btn-btn-default" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+
+</div></body>

@@ -1,0 +1,162 @@
+<style>
+body {
+background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+    border-radius: 5px;
+   
+    padding: 20px;
+     
+} 
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+th {
+    background-color:  #008fb3;
+    color: white;
+}
+h1
+{
+font-size: 40px;
+color: #0080ff;
+}
+input[type=text], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+     display: inline-block; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button[type=submit] {
+     background-color: #00cc00;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+</style>
+<body ng-controller=AdminJobsController">
+<div>
+
+	<div>
+		<hr>
+		<button type="button" data-toggle="modal" class="btn btn-primary btn-lg " data-target="#myModal">Add
+			New Job</button>
+		<h1>All Jobs</h1>
+		<span class="clearfix"></span>
+		</hr>
+		<hr>
+		</hr>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Job id</th>
+					<th>Company Name</th>
+					<th>Role</th>
+					<th>Requirements</th>
+					<th>Description</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="job in jobs">
+					<td>{{job.job_id}}</td>
+					<td>{{job.job_name}}</td>
+					<td>{{job.job_role}}</td>
+					<td>{{job.job_requirements}}</td>
+					<td>{{job.job_description}}</td>
+					<td><button type="button" class="btn btn-primary btn-sm "
+							data-toggle="modal" data-target="#editjob"
+							ng-click="editJob(job)">Edit</button></td>
+					<td><button type="button" class="btn btn-danger btn-sm "
+							data-toggle="modal" data-target="#deletejob"
+							ng-click="editJob(job)">Delete</button></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Add New Job</h4>
+					</div>
+					<div class="modal-body">
+					
+						<form name="myForm" novalidate><h2>{{message}}</h2>
+							JobName:<input type="text" name="job_name" ng-model="job_name" required>
+							<span ng-show="myForm.job_name.$dirty &&myForm.job_name.$error.required">Jobname is required.</span><br>
+							JobRole:<input type="text" name="job_role" ng-model="job_role" required>
+							<span ng-show="myForm.job_role.$dirty &&myForm.job_role.$error.required">Jobrole is required.</span><br>
+							JobRequirements:<input type="text" name="job_requirements" ng-model="job_requirements" required> 
+							<span ng-show="myForm.job_requirements.$dirty &&myForm.job_requirements.$error.required">job requirements is required.</span><br>
+							JobDescription:<input type="text" name="job_description" ng-model="job_description" required>
+							<span ng-show="myForm.job_description.$dirty &&myForm.job_description.$error.required">job description is required.</span><br>
+							<button type="submit" ng-disabled="myForm.$invalid" ng-click="addJobs()">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="editjob" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Edit</h4>
+					</div>
+					<div class="modal-body">
+						<form>
+							job_name:<input type="text" name="job_name"
+								ng-model="jobedit.job_name"> job_role:<input type="text"
+								name="job_role" ng-model="jobedit.job_role">
+							job_requirements:<input type="text" name="job_requirements"
+								ng-model="jobedit.job_requirements"> job_description:<input
+								type="text" name="job_description"
+								ng-model="jobedit.job_description">
+							<button type="submit" ng-click="saveEdit()">SaveEdit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="deletejob" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Delete</h4>
+					</div>
+					<div class="modal-body">Do you want to delete
+						{{jobedit.job_id}} job permanently?</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn-btn-default" data-dismiss="modal"
+						ng-click="deleteJob(jobedit)">Yes</button>
+					<button type="button" class="btn-btn-default" data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div></body>

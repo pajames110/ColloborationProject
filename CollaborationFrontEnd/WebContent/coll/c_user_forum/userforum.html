@@ -1,0 +1,200 @@
+<style>
+body {
+background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg) no-repeat center fixed; 
+   background-size:cover;
+    border-radius: 5px;
+   
+    padding: 20px;
+     
+} 
+input[type=text], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+     display: inline-block; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button[type=submit] {
+     background-color: #00cc00;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+th {
+    background-color:  #008fb3;
+    color: white;
+}
+h1
+{
+font-size: 40px;
+color: #0080ff;
+}
+
+</style>
+<body ng-controller="UserForumController">
+<div>
+	<hr>
+	<button type="button" data-toggle="modal" class="btn-btn-primary btn-lg" data-target="#myModal">Add
+		New Forum</button>
+	<h1>All Forums</h1>
+	<span class="clearfix"></span>
+	</hr>
+	<hr>
+	</hr>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Forum id</th>
+				<th>Topic</th>
+				<th>Question</th>
+				<th>Category</th>
+				<th>Answer</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="forum in forums">
+				<td>{{forum.forum_id}}</td>
+				<td>{{forum.topic}}</td>
+				<td>{{forum.question}}</td>
+				<td>{{forum.category}}</td>
+				<td><input type="text"  ng-model="forum.answer"></td>
+			<td><button type="button" class="btn btn-primary btn-sm " ng-click="answer(forum)">Answer</button></td>
+			
+				<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#editforum"
+						ng-click="editForum(forum)">Edit</button></td>
+				<td><button type="button" class="btn btn-danger btn-sm "
+						data-toggle="modal" data-target="#deleteforum"
+						ng-click="editForum(forum)">Delete</button></td>
+						<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#answers"
+						ng-click="viewanswers(forum)">View Answers</button></td>
+		</tr></tbody>
+	</table>
+	<!-- Modal -->
+	<div class="modal fade" id="answers" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">View Answers</h4>
+				</div>
+				<div class="modal-body">
+				
+	<span class="clearfix"></span>
+	</hr>
+	
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				
+				<th>Answer</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		
+			<tr ng-repeat="ansforum in ansforums">
+				
+				<td>{{ansforum.answer}}</td>
+				
+				
+			
+		</tbody>
+		
+	</table>
+				</div>
+		<div class="modal-footer">
+				<button type="button" class="btn-btn-primary btn-sm" data-dismiss="modal"
+					ng-click="">Close</button>
+				</div>	</div></div></div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Add New Forum</h4>
+				</div>
+				<div class="modal-body">
+					<form name="myForm" novalidate><h2>{{message}}</h2>
+						Topic:<input type="text" name="topic" ng-model="topic" required>
+						<span ng-show="myForm.topic.$dirty &&myForm.topic.$error.required">Topic is required.</span><br>
+						Category:<input type="text" name="category" ng-model="category" required>
+						<span ng-show="myForm.category.$dirty &&myForm.category.$error.required">Category is required.</span><br>
+						Question:<input type="text" name="question" ng-model="question" required>
+							<span ng-show="myForm.question.$dirty &&myForm.question.$error.required">question is required.</span><br>
+						<button type="submit"  ng-disabled="myForm.$invalid" ng-click="addForum()">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="editforum" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Edit</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						Forum_id:<input type="text" name="forum_id"
+							ng-model="forumedit.forum_id">
+							 Topic:<input type="text" name="topic" ng-model="forumedit.topic">
+						Category:<input type="text" name="category" ng-model="forumedit.category">
+						Question:<input type="text" name="question"
+							ng-model="forumedit.question">
+							Answer:<input type="text" name="answer" ng-model="forumedit.answer">
+						<button type="submit" ng-click="saveEdit()">SaveEdit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="deleteforum" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Delete</h4>
+				</div>
+				<div class="modal-body">Do you want to delete
+					{{forumedit.forum_id}} forum permanently?</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn-btn-default" data-dismiss="modal"
+					ng-click="deleteForum(forumedit)">Yes</button>
+				<button type="button" class="btn-btn-default" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+
+</div></body>
