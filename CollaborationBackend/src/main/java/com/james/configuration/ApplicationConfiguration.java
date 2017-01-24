@@ -16,6 +16,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.james.model.Blog;
+import com.james.model.BlogComment;
+import com.james.model.Forum;
+import com.james.model.Friend;
+import com.james.model.Jobs;
 import com.james.model.Users;
 
 
@@ -57,11 +61,10 @@ public class ApplicationConfiguration {
 		localSessionFactoryBuilder.addProperties(getHibernateProperties());
 		localSessionFactoryBuilder.addAnnotatedClass(Users.class);
 		localSessionFactoryBuilder.addAnnotatedClass(Blog.class);
-		//localSessionFactoryBuilder.addAnnotatedClass(Jobs.class);
-//		localSessionFactoryBuilder.addAnnotatedClass(Forum.class);
-//		localSessionFactoryBuilder.addAnnotatedClass(Friend.class);
-//		localSessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
-//		localSessionFactoryBuilder.addAnnotatedClass(AnswerForum.class);
+		localSessionFactoryBuilder.addAnnotatedClass(Jobs.class);
+	localSessionFactoryBuilder.addAnnotatedClass(Forum.class);
+		localSessionFactoryBuilder.addAnnotatedClass(Friend.class);
+		localSessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
 
 		return localSessionFactoryBuilder.buildSessionFactory();
 	}

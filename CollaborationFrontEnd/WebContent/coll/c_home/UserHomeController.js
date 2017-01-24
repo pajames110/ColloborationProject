@@ -6,7 +6,7 @@
 					{
 					console.log(" in findfriends function");
 					console.log("name in  findfriends:"+$rootScope.uname);
-							 $http.get("http://localhost:8080/Chatworld/findFriends/"+$rootScope.uname)
+							 $http.get("http://localhost:8080/CollaborationBackend/findFriends/"+$rootScope.uname)
 							    .then(function (response) {
 							    	
 							    	$scope.friends = response.data;
@@ -28,7 +28,7 @@
 								name:$rootScope.uname,
 								friendname:$scope.friend.name
 							}
-						$http.post("http://localhost:8080/Chatworld/addFriend/",fr);
+						$http.post("http://localhost:8080/CollaborationBackend/addFriend/",fr);
 						
 					}
 					

@@ -37,4 +37,12 @@ public class Friend {
 		public void setIsOnline(String isOnline) {
 			this.isOnline = isOnline;
 		}
+		@Override
+		public String toString() {
+			return "Friend [id=" + id + ", name=" + name + ", friendname=" + friendname + ", isOnline=" + isOnline
+					+ "]";
+		}
+		
+		
+		
 }

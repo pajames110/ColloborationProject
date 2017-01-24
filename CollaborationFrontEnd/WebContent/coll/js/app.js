@@ -7,7 +7,7 @@ app.config(function($routeProvider) {
 	$routeProvider
 
 	.when('/', {
-		templateUrl : 'index.html'
+		templateUrl : 'coll/c_home/home.html'
 		
 
 	}).when('/home', {
