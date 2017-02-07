@@ -51,7 +51,7 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	public void updateBlog(Blog blog) {
-		sessionFactory.getCurrentSession().update(blog);
+		sessionFactory.getCurrentSession().saveOrUpdate(blog);
 		
 	}
 

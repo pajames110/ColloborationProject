@@ -7,8 +7,8 @@ app.config(function($routeProvider) {
 	$routeProvider
 
 	.when('/', {
-		templateUrl : 'coll/c_home/home.html'
-		
+		templateUrl : 'coll/c_home/home.html',
+		controller : 'UserHomeController'
 
 	}).when('/home', {
 		templateUrl : 'coll/c_home/home.html',
@@ -35,6 +35,10 @@ app.config(function($routeProvider) {
 		templateUrl : "coll/c_admin_forum/adminforum.html",
 		controller : "AdminForumController"
 
+	}).when("/chat", {
+		templateUrl : "coll/c_chat/chat.html",
+		controller : 'chatController'
+
 	})
 
 	.when('/blog', {
@@ -45,10 +49,10 @@ app.config(function($routeProvider) {
 		templateUrl : 'coll/c_blog_admin/adminblog.html',
 		controller : 'AdminBlogController'
 
-	}).when("/friendslist",
-	{
-		templateUrl:"coll/c_friend/friendslist.html",
-	controller:'FriendsListController'
+	}).when("/friendslist", {
+		templateUrl : "coll/c_friend/friendslist.html",
+		controller : 'FriendsListController'
+
 	})
 
 	.when('/login', {

@@ -56,7 +56,7 @@
 <link rel="stylesheet" href="unika-html/css/mobile.css">
 
 <!-- Skin CSS -->
-<link rel="stylesheet" href="css/skin/cool-gray.css">
+<link rel="styleseet" href="css/skin/cool-gray.css">
 <!-- <link rel="stylesheet" href="css/skin/ice-blue.css"> -->
 <!-- <link rel="stylesheet" href="css/skin/summer-orange.css"> -->
 <!-- <link rel="stylesheet" href="css/skin/fresh-lime.css"> -->
@@ -109,8 +109,9 @@
 									class="page-scroll"></i> Blogs</a></li>
 							<li><a href="#adminforum" ng-show="adminforum"><i
 									class="page-scroll"></i> Forums</a></li>
-									<li><a href="#friendslist" ng-show="friendslist">
-						<i class="page-scroll"></i> Friends</a></li>
+							<li><a href="#friendslist" ng-show="friendslist"> <i
+									class="page-scroll"></i> Friends
+							</a></li>
 							<!-- 						<li><a href="#chat" ng-show="chat">
 						<i class="fa fa-home"></i> chat</a></li>
  -->
@@ -119,6 +120,9 @@
 							<li><a href="#job" ng-show="jobs"><i class="page-scroll"></i>Jobs</a></li>
 							<li><a href="#userjobs" ng-show="userjobs"> <i
 									class="page-scroll"></i> Jobs
+							</a></li>
+							<li><a href="#chat" ng-show="chat"> <i
+									class="page-scroll"></i> chat
 							</a></li>
 							<li><a ng-show="friend" class="page-scroll" href="#friend">Friend</a></li>
 							<li><a ng-show="blogs" class="page-scroll" href="#blog">Blog</a></li>
@@ -348,8 +352,9 @@
 <script src="coll/c_allblogs/AllBlogsController.js"></script>
 <script src="coll/c_admin_job/AdminJobsController.js"></script>
 <script src="coll/c_user_jobs/UserJobsController.js"></script>
-	<script src="coll/c_friend/FriendsListController.js"></script>
-	<script src="coll/c_home/UserHomeController.js"></script>
+<script src="coll/c_friend/FriendsListController.js"></script>
+<script src="coll/c_home/UserHomeController.js"></script>
+<script src="coll/c_chat/chatController.js"></script>
 
 
 
@@ -357,6 +362,11 @@
 <script src="coll/js/angular-cookies.js"></script>
 <script src="coll/js/angular-cookies.min.js"></script>
 <script src="coll/js/angular-route.min.js"></script>
+<script src="coll/js/sockjs/sockjs.min.js" type="text/javascript"></script>
+<script src="coll/js/stomp-websocket/lib/stomp.min.js"
+	type="text/javascript"></script>
+<script src="coll/js/lodash/dist/lodash.min.js"></script>
+
 
 </body>
 </html>

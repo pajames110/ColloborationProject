@@ -44,6 +44,7 @@ public void deleteBlog(@RequestBody Blog blog)
 @RequestMapping(value="/updateBlog",headers="accept=Application/json",method=RequestMethod.PUT)
 public void updateBlog(@RequestBody Blog blog)
 {
+	System.out.println("Status in Blog controller"+blog.isStatus());
 	blogDao.updateBlog(blog);
 }
 

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<link
+	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700"
+	rel="stylesheet" type="text/css" />
+<link href="resources/css/style.css" rel="stylesheet" type="text/css" />
+<style>
+body {
+	background: url(http://www.alexanderdesignsgh.com/img/slide1-bg.jpg)
+		no-repeat center fixed;
+	background-size: cover;
+	border-radius: 5px;
+	padding: 20px;
+}
+</style>
+</head>
+<body ng-controller="chatController">
+	<div class="container">
+		<form ng-submit="addMessage()" name="messageForm">
+			<input type="text" placeholder="Compose a new message..."
+				ng-model="message" />
+			<div class="in">
+				<span class="count" ng-bind="max - message.length"
+					ng-class="{danger: message.length > max}">140</span>
+				<button class="btn-btn-primary btn-sm"
+					ng-disabled="message.length > max || message.length === 0">Send</button>
+			</div>
+		</form>
+		<hr />
+		<p ng-repeat="message in messages | orderBy:'time':true"
+			class="message">
+			<time>{{message.time | date:'HH:mm'}}</time>
+			<span ng-class="{self: message.self}">{{message.message}}</span> <span
+				ng-class="{self: username.self}">{{message.username}}</span>
+		</p>
+	</div>
+	<!-- <script src="coll/c_chat/chatController.js"></script>
+	<script src="coll/c_chat/ChatService.js"></script>
+ -->
+	<script src="coll/js/sockjs/sockjs.min.js" type="text/javascript"></script>
+	<script src="coll/js/stomp-websocket/lib/stomp.min.js"
+		type="text/javascript"></script>
+	<script src="coll/js/lodash/dist/lodash.min.js"></script>
+
+
+
+</body>
+</html>

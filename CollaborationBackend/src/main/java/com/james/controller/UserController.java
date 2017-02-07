@@ -39,7 +39,7 @@ public class UserController {
 
 		user.setName(name);
 		usersDao.registerUser(user);
-		Path path = Paths.get(" /Users/James/Documents/project2practise/CollaborationFrontEnd//WebContent//images//"
+		Path path = Paths.get("Users/James/Documents/2/CollaborationFrontEnd/WebContent/images"
 				+ name + ".jpeg");
 		if (file != null) {
 			try {
